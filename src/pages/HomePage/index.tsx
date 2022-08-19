@@ -6,6 +6,7 @@ const HomePage = () => {
     <div>
       <p>HomePage</p>
       <Link to="/not-found">404</Link>
+      <a to="/not-found">404</a>
     </div>
   );
 };
