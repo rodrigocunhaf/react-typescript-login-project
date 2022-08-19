@@ -12,6 +12,7 @@ module.exports = {
     minimize: false,
   },
   devServer: {
+    historyApiFallback: true,
     static: {
       directory: path.resolve(__dirname, 'src/assets'),
     },

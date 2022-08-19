@@ -1,22 +1,20 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
-import { ProjectColors } from './global/configs/colors';
-import { BGPageColor } from './global/configs/colors/BGPageColor';
 import { FontsConfig } from './global/configs/fonts';
 import { PageConfig } from './global/configs/html';
-
-const P = styled.p`
-  font-size: 3rem;
-  font-family: Roboto;
-`;
+import { HomePage } from './pages/HomePage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 const App = () => {
   return (
     <>
       <FontsConfig />
       <PageConfig />
-      <BGPageColor bgColor={ProjectColors.BLUE} />
-      <P>Inicial Commit</P>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </>
   );
 };
