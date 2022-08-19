@@ -1,0 +1,11 @@
+{
+  "header": {
+    "content": {
+      "logo": {
+        "fileName": "redux-logo.svg",
+        "description": "redux project representation",
+        "heading": "Login Project"
+      }
+    }
+  }
+}
