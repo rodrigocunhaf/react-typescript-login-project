@@ -5,6 +5,19 @@
         "fileName": "redux-logo.svg",
         "description": "redux project representation",
         "heading": "Login Project"
+      },
+      "login": {
+        "inputsList": [
+          {
+            "labelName": "Username",
+            "context": "USERNAME"
+          },
+          {
+            "labelName": "password",
+            "context": "PASSWORD"
+          }
+        ],
+        "buttonText": "Login"
       }
     }
   }

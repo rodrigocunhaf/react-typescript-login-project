@@ -1,19 +1,19 @@
 import React from 'react';
 import { ProjectColors } from '../../../global/configs/colors';
 import { BGPainter } from '../../atoms/Frames/BGPainter';
-import HeaderContainerFrames from '../../atoms/Frames/customs/HeaderContainerFrames';
+import { HContainerBoxes } from '../../atoms/Frames/Boxes';
 
 const HeaderContainer = ({ children }: { children: React.ReactNode }) => {
   return (
-    <HeaderContainerFrames.Header>
+    <HContainerBoxes.Header>
       <BGPainter color={ProjectColors.WHITE}>
-        <HeaderContainerFrames.HeaderContainer>
-          <HeaderContainerFrames.HeaderContent>
+        <HContainerBoxes.HeaderContainer>
+          <HContainerBoxes.HeaderContent>
             {children}
-          </HeaderContainerFrames.HeaderContent>
-        </HeaderContainerFrames.HeaderContainer>
+          </HContainerBoxes.HeaderContent>
+        </HContainerBoxes.HeaderContainer>
       </BGPainter>
-    </HeaderContainerFrames.Header>
+    </HContainerBoxes.Header>
   );
 };
 

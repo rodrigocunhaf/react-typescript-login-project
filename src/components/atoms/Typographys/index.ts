@@ -1,1 +1,1 @@
-export * as default from './Headings/RobotoH1';
+export * as RobotoH1 from './Headings/RobotoH1';

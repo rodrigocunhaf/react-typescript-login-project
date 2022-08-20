@@ -6,9 +6,9 @@ type FontProps = {
   color: ProjectColors;
 };
 
-const RobotoH1 = styled.h1<FontProps>`
+const Default = styled.h1<FontProps>`
   font-family: Roboto;
   color: ${(props) => props.color};
 `;
 
-export { RobotoH1 };
+export { Default };

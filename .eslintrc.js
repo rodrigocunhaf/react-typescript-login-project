@@ -3,12 +3,13 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'standard-with-typescript', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+  ],
   parser: '@typescript-eslint/parser',
-  overrides: [],
-  parserOptions: {
-    ecmaVersion: 'latest',
-  },
-  plugins: ['react'],
+  plugins: ['@typescript-eslint'],
   rules: {},
 };
