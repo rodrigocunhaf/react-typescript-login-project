@@ -18,6 +18,9 @@
           }
         ],
         "buttonText": "Login"
+      },
+      "logout": {
+        "name": "Logout"
       }
     }
   }

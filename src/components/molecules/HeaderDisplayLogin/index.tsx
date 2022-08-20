@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { logIn, useAuthDispath, useAuthSelector } from '../../../context/store';
+import { logIn } from '../../../context/reducers/authReducers';
+import { useAuthDispath, useAuthSelector } from '../../../context/store';
 import { ProjectColors } from '../../../global/configs/colors';
 import { HDLoginBoxes } from '../../atoms/Frames/Boxes';
 import { BtnRounded } from '../../atoms/UI/Buttons';

@@ -15,6 +15,10 @@ const Default = styled.button<BtnRoundedProps>`
   background-color: ${(props) => props.BGColor};
   color: ${(props) => props.color};
   ${(props) => props.isBold && 'font-weight:bold'};
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Small = styled(Default)`

@@ -5,12 +5,17 @@ import {
   HeaderDisplayLogin,
   HeaderDisplayLoginProps,
 } from '../../molecules/HeaderDisplayLogin';
+import {
+  HeaderDisplayLogout,
+  HeaderDisplayLogoutBtn,
+} from '../../molecules/HeaderDisplayLogout';
 import { HeaderLogo, LogoHeaderProps } from '../../molecules/HeaderLogo';
 
 export type HeaderLoginProps = {
   content: {
     logo: LogoHeaderProps;
     login: HeaderDisplayLoginProps;
+    logout: HeaderDisplayLogoutBtn;
   };
 };
 
@@ -31,9 +36,10 @@ const HeaderLogin = ({ content }: HeaderLoginProps) => {
         />
       )}
       {auth.logged === true && (
-        <div>
-          <p>Olá,{auth.userName}</p>
-        </div>
+        <HeaderDisplayLogout
+          username={`${auth.userName}`}
+          logoutButton={content.logout}
+        />
       )}
     </HeaderContainer>
   );

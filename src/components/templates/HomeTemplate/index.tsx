@@ -14,10 +14,6 @@ type HomeTemplateProps = {
 const HomeTemplate = ({ data }: HomeTemplateProps) => {
   const authSelector = useAuthSelector((state) => state.auth);
 
-  const authDispath = useDispatch();
-
-  console.log(authSelector);
-
   return (
     <>
       <BGPageColor bgColor={ProjectColors.BLUE} />
