@@ -29,7 +29,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify({
-        PUBLIC_PATH: './public',
+        PUBLIC_PATH: './public/',
       }),
     }),
     new CopyWebpackPlugin({
