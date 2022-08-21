@@ -33,7 +33,7 @@
         }
       },
       "bannerImage": {
-        "bgFileName": "/images/banner/banner-image.png"
+        "bgFileName": "banner-image.png"
       }
     }
   }
