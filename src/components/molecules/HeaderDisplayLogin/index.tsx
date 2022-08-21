@@ -47,7 +47,7 @@ const HeaderDisplayLogin = ({
 
   const UsernameInput = (
     <RobotoInputs.Default
-      type="text"
+      type="email"
       onChange={onChangeUsername}
       value={username}
     />
