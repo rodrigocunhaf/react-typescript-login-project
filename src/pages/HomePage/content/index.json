@@ -13,7 +13,7 @@
             "context": "USERNAME"
           },
           {
-            "labelName": "password",
+            "labelName": "Password",
             "context": "PASSWORD"
           }
         ],
@@ -21,6 +21,19 @@
       },
       "logout": {
         "name": "Logout"
+      }
+    }
+  },
+  "banner": {
+    "content": {
+      "bannerText": {
+        "content": {
+          "title": "Loren,Ipsum!",
+          "paragraphy": "Asperiores illo unde deserunt qui. Id explicabo aliquam, placeat quo, quos sed beatae vel aliquid qui culpa pariatur in non repellat nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit sunt molestiae quos sit voluptates aspernatur dolore minus soluta voluptatibus, eum itaque quibusdam, asperiores facere rem vel quod dolor debitis eos? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt dolor, corrupti voluptatibus iusto architecto dolores optio, assumenda veniam sapiente iure dicta esse beatae"
+        }
+      },
+      "bannerImage": {
+        "bgFileName": "/images/banner/banner-image.png"
       }
     }
   }
