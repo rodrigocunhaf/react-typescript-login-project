@@ -5,8 +5,6 @@ const { URL } = require('url');
 
 const hostName = new URL('http://localhost:3000');
 
-console.log(hostName);
-
 module.exports = {
   mode: 'development',
   entry: './src/index.tsx',
