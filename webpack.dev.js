@@ -5,6 +5,8 @@ const { URL } = require('url');
 
 const hostName = new URL('http://localhost:3000');
 
+console.log(hostName);
+
 module.exports = {
   mode: 'development',
   entry: './src/index.tsx',
@@ -37,7 +39,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify({
-        PUBLIC_PATH: hostName.href,
+        PUBLIC_PATH: hostName.origin,
       }),
     }),
   ],

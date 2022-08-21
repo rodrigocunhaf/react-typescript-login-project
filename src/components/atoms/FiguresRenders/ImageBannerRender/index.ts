@@ -6,7 +6,7 @@ type ImageBannerRenderProps = {
 
 const ImageBannerRender = styled.div<ImageBannerRenderProps>`
   background-image: url(${(props) =>
-    `${process.env.PUBLIC_PATH}images/banner/${props.bgFileName}`});
+    `${process.env.PUBLIC_PATH}/images/banner/${props.bgFileName}`});
   background-size: cover;
   height: 100%;
 `;
