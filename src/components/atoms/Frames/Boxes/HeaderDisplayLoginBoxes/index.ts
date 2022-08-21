@@ -15,6 +15,10 @@ const ListInputs = styled.ul`
 const ListInputsItems = styled.li`
   display: flex;
   gap: 0.5rem;
+
+  input {
+    margin-left: 0.5rem;
+  }
 `;
 
 export { Container, ListInputs, ListInputsItems };

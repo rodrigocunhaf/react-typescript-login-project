@@ -5,7 +5,6 @@ const Default = styled.input`
   padding: 0.2rem;
   font-size: 1rem;
   outline: 0;
-  margin-left: 0.5rem;
 `;
 
 export { Default };
