@@ -36,5 +36,16 @@
         "bgFileName": "banner-image.png"
       }
     }
+  },
+  "footer": {
+    "content": {
+      "logo": {
+        "image": {
+          "description": "logo project",
+          "filename": "redux-logo.svg"
+        },
+        "title": "Login Project"
+      }
+    }
   }
 }

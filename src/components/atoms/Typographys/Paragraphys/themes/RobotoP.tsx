@@ -10,7 +10,7 @@ type RobotoParagraphyProps = {
 
 const Default = styled.p<RobotoParagraphyProps>`
   font-family: Roboto;
-  color: ${(props) => props.color && props.color}
+  color: ${(props) => props.color && props.color};
   font-size: ${(props) => (props.fontSize ? props.fontSize + 'rem' : '1rem')};
   ${(props) => props.isBold && 'font-weight:bold;'}
 `;
