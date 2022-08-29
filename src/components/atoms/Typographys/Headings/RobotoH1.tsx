@@ -9,6 +9,7 @@ type FontProps = {
 const Default = styled.h1<FontProps>`
   font-family: Roboto;
   color: ${(props) => props.color};
+  font-size: 1rem;
 `;
 
 export { Default };

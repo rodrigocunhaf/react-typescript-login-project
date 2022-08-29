@@ -4,6 +4,7 @@ const Header = styled.header``;
 
 const HeaderContainer = styled.div`
   max-width: 120rem;
+  min-width: 20rem;
   margin: 0 auto;
 `;
 

@@ -8,7 +8,11 @@ const Container = styled.div`
   animation-duration: 1s;
   animation-fill-mode: forwards;
   margin: 3rem 0 0 0;
-  width: 50%;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
 
   @keyframes effect {
     from {

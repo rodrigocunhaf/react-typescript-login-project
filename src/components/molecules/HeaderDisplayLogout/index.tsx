@@ -1,10 +1,11 @@
 import React from 'react';
-import { logOff } from '../../../context/reducers/authReducers';
-import { useAuthDispath } from '../../../context/store';
 import { ProjectColors } from '../../../global/configs/colors';
 import { HDLogoutBoxes } from '../../atoms/Frames/Boxes';
 import { RobotoP } from '../../atoms/Typographys/Paragraphys';
 import { BtnRounded } from '../../atoms/UI/Buttons';
+import { useHomeDispatch } from '../../templates/HomeTemplate/store';
+import { logMeOut } from '../../templates/HomeTemplate/store/actions/Auth';
+import { authentication } from '../../templates/HomeTemplate/store/reducers/Auth';
 
 export type HeaderDisplayLogoutBtn = {
   name: string;
@@ -19,7 +20,11 @@ const HeaderDisplayLogout = ({
   username,
   logoutButton,
 }: HeaderDisplayLogoutProps) => {
-  const dispatch = useAuthDispath();
+  const dispatch = useHomeDispatch();
+
+  const logMeOutHandler = () => {
+    dispatch(authentication(logMeOut()));
+  };
 
   return (
     <HDLogoutBoxes.Container>
@@ -30,7 +35,7 @@ const HeaderDisplayLogout = ({
       <BtnRounded.Small
         BGColor={ProjectColors.BLUE}
         color={ProjectColors.WHITE}
-        onClick={() => dispatch(logOff())}
+        onClick={logMeOutHandler}
         isBold={true}
       >
         {logoutButton.name}

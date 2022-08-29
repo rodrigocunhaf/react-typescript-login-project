@@ -1,0 +1,20 @@
+{
+  "header": {
+    "login": {
+      "inputsList": [
+        {
+          "labelName": "Username",
+          "context": "USERNAME"
+        },
+        {
+          "labelName": "Password",
+          "context": "PASSWORD"
+        }
+      ],
+      "buttonText": "Login"
+    },
+    "logout": {
+      "name": "Logout"
+    }
+  }
+}

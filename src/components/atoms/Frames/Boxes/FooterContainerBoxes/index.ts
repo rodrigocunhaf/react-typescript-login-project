@@ -5,7 +5,7 @@ const Footer = styled.footer`
 `;
 
 const Content = styled.div`
-  padding: 2rem 0 0 0;
+  padding: 2rem 0 2rem 0;
 `;
 
 export { Footer, Content };

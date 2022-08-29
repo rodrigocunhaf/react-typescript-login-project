@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useAuthSelector } from '../../../context/store';
+import React from 'react';
+
 import { HeaderContainer } from '../../molecules/HeaderContainer';
 import {
   HeaderDisplayLogin,
@@ -10,17 +10,25 @@ import {
   HeaderDisplayLogoutBtn,
 } from '../../molecules/HeaderDisplayLogout';
 import { HeaderLogo, LogoHeaderProps } from '../../molecules/HeaderLogo';
+import { useHomeSelector } from '../../templates/HomeTemplate/store';
 
-export type HeaderLoginProps = {
+export type HeaderLoginContent = {
   content: {
     logo: LogoHeaderProps;
+  };
+};
+
+export type HeaderLoginUIContent = {
+  UIcontent: {
     login: HeaderDisplayLoginProps;
     logout: HeaderDisplayLogoutBtn;
   };
 };
 
-const HeaderLogin = ({ content }: HeaderLoginProps) => {
-  const auth = useAuthSelector((state) => state.auth);
+export type HeaderLoginProps = HeaderLoginContent & HeaderLoginUIContent;
+
+const HeaderLogin = ({ content, UIcontent }: HeaderLoginProps) => {
+  const homeSelector = useHomeSelector((state) => state);
 
   return (
     <HeaderContainer>
@@ -29,16 +37,18 @@ const HeaderLogin = ({ content }: HeaderLoginProps) => {
         description={content.logo.description}
         heading={content.logo.heading}
       />
-      {auth.logged === false && (
+
+      {homeSelector.auth.logged === false && (
         <HeaderDisplayLogin
-          buttonText={content.login.buttonText}
-          inputsList={content.login.inputsList}
+          buttonText={UIcontent.login.buttonText}
+          inputsList={UIcontent.login.inputsList}
         />
       )}
-      {auth.logged === true && (
+
+      {homeSelector.auth.logged === true && (
         <HeaderDisplayLogout
-          username={`${auth.userName}`}
-          logoutButton={content.logout}
+          username={`${homeSelector.auth.username}`}
+          logoutButton={UIcontent.logout}
         />
       )}
     </HeaderContainer>

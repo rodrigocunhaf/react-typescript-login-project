@@ -1,36 +1,34 @@
 import React from 'react';
-import { useAuthSelector } from '../../../context/store';
+import { Provider } from 'react-redux';
 import { ProjectColors } from '../../../global/configs/colors';
 import { BGPageColor } from '../../../global/configs/colors/BGPageColor';
-import { HCH, HCS } from '../../../global/configs/HeadConfig';
+import { HCS } from '../../../global/configs/HeadConfig';
 import { BannerHome, BannerHomeProps } from '../../organisms/BannerHome';
 import {
   FooterDefault,
   FooterDefaultProps,
 } from '../../organisms/FooterDefault';
-import { HeaderLogin, HeaderLoginProps } from '../../organisms/HeaderLogin';
+import { HeaderLogin, HeaderLoginContent } from '../../organisms/HeaderLogin';
+import store from './store';
+import UIContent from './UI/index.json';
 
 type HomeTemplateProps = {
   data: {
-    header: HeaderLoginProps;
+    header: HeaderLoginContent;
     banner: BannerHomeProps;
     footer: FooterDefaultProps;
   };
 };
 
 const HomeTemplate = ({ data }: HomeTemplateProps) => {
-  const authSelector = useAuthSelector((state) => state.auth);
-
   return (
-    <>
-      <HCH.Head>
-        <HCS.SocialLink />
-      </HCH.Head>
+    <Provider store={store}>
+      <HCS.SocialLink />
       <BGPageColor bgColor={ProjectColors.BLUE} />
-      <HeaderLogin content={data.header.content} />
+      <HeaderLogin content={data.header.content} UIcontent={UIContent.header} />
       <BannerHome content={data.banner.content} />
       <FooterDefault content={data.footer.content} />
-    </>
+    </Provider>
   );
 };
 
