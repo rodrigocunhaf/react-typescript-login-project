@@ -8,3 +8,5 @@ export * as BContainerBoxes from './BannerContainerBoxes';
 export * as FLogoBoxes from './FooterLogoBoxes';
 export * as FSocialBoxes from './FooterSocialBoxes';
 export * as FContainerBoxes from './FooterContainerBoxes';
+export * as MLoginBoxes from './ModalLoginBoxes';
+export * as MInvalidBoxes from './ModalInvalidBoxes';

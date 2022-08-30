@@ -9,6 +9,7 @@ const BtnRounded = styled.button<BtnRoundedProps>`
   align-items: center;
   font-family: Roboto;
   border: 0;
+  border-radius: 2rem;
   justify-content: center;
   font-size: ${(props) => props.theme.fontSize};
   background-color: ${(props) => props.theme.bgColor};

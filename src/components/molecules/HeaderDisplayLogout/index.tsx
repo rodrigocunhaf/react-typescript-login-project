@@ -41,7 +41,7 @@ const HeaderDisplayLogout = ({ username }: HeaderDisplayLogoutProps) => {
     <HDLogoutBoxes.Container>
       <HDLogoutBoxes.Desktop>
         <HDLogoutBoxes.WelcomeBox>
-          <RobotoP>Hi,{username}</RobotoP>
+          <RobotoP>{username}</RobotoP>
         </HDLogoutBoxes.WelcomeBox>
 
         <BtnRounded
@@ -63,7 +63,7 @@ const HeaderDisplayLogout = ({ username }: HeaderDisplayLogoutProps) => {
         {selectorMenuMobile.open === true && (
           <HDLogoutBoxes.MobileInfoContainer>
             <HDLogoutBoxes.WelcomeBox>
-              <RobotoP>Hi,{username}</RobotoP>
+              <RobotoP>{username}</RobotoP>
             </HDLogoutBoxes.WelcomeBox>
 
             <BtnRounded

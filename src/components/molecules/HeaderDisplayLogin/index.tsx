@@ -8,13 +8,8 @@ import {
   changeUsername,
   resetAllInputsLogin,
 } from '../../templates/HomeTemplate/store/actions/UI/FormLogin';
-import {
-  offModal,
-  onModal,
-} from '../../templates/HomeTemplate/store/actions/UI/ModalLogin';
 import { authentication } from '../../templates/HomeTemplate/store/reducers/Auth';
 import { setInput } from '../../templates/HomeTemplate/store/reducers/UI/FormLogin';
-import { modalState } from '../../templates/HomeTemplate/store/reducers/UI/ModalLogin';
 
 import {
   logMe,
@@ -24,13 +19,14 @@ import {
   useHomeDispatch,
   useHomeSelector,
 } from '../../templates/HomeTemplate/store';
-import RobotoH2 from '../../atoms/Typographys/Headings/RobotoH2';
 import BtnRounded from '../../atoms/UI/Buttons/BtnRounded';
+import { smallBlueBtnRounded } from '../../atoms/UI/Buttons/BtnRounded/themes';
+import validator from 'validator';
+import { modalInvalidState } from '../../templates/HomeTemplate/store/reducers/UI/ModalInvalid';
 import {
-  smallBlueBtnRounded,
-  smallRedBtnRounded,
-} from '../../atoms/UI/Buttons/BtnRounded/themes';
-import { mediumBlueH2 } from '../../atoms/Typographys/Headings/RobotoH2/themes';
+  offModalInvalid,
+  onModalInvalid,
+} from '../../templates/HomeTemplate/store/actions/UI/ModalInvalid';
 
 type InputProps = {
   labelName: string;
@@ -49,8 +45,9 @@ const inputs: InputProps[] = [
 ];
 
 const HeaderDisplayLogin = () => {
-  const selector = useHomeSelector((state) => state);
   const dispatch = useHomeDispatch();
+
+  const { formLogin } = useHomeSelector((state) => state);
 
   const onChangeUsernameHandler = (
     event: React.FormEvent<HTMLInputElement>
@@ -67,7 +64,7 @@ const HeaderDisplayLogin = () => {
   const PasswordInput = (
     <RobotoInputs.Default
       type="password"
-      value={selector.formLogin.loginPassword}
+      value={formLogin.loginPassword}
       onChange={onChangePasswordHandler}
     />
   );
@@ -75,24 +72,26 @@ const HeaderDisplayLogin = () => {
   const UsernameInput = (
     <RobotoInputs.Default
       type="email"
-      value={selector.formLogin.loginUsername}
+      value={formLogin.loginUsername}
       onChange={onChangeUsernameHandler}
     />
   );
 
   const goToAuthenticate = () => {
-    dispatch(authentication(logMe(selector.formLogin.loginUsername)));
-    dispatch(setInput(resetAllInputsLogin()));
-  };
-
-  const cancelHandler = () => {
-    dispatch(modalState(offModal));
-    dispatch(setInput(resetAllInputsLogin()));
+    if (
+      validator.isEmail(formLogin.loginUsername) === true &&
+      formLogin.loginPassword.length >= 8
+    ) {
+      dispatch(authentication(logMe(formLogin.loginUsername)));
+      dispatch(setInput(resetAllInputsLogin()));
+      return;
+    }
+    dispatch(modalInvalidState(onModalInvalid));
   };
 
   return (
-    <HDLoginBoxes.Container>
-      <HDLoginBoxes.Desktop>
+    <>
+      <HDLoginBoxes.Container>
         <HDLoginBoxes.ListInputs>
           {inputs.map((input, index) => {
             return (
@@ -115,54 +114,8 @@ const HeaderDisplayLogin = () => {
         >
           Login
         </BtnRounded>
-      </HDLoginBoxes.Desktop>
-      <HDLoginBoxes.Mobile>
-        {selector.UI.modalLogin && (
-          <Modal>
-            <HDLoginBoxes.ModalContent>
-              <RobotoH2 theme={mediumBlueH2}>Login Project</RobotoH2>
-              <HDLoginBoxes.ListInputs>
-                {inputs.map((input, index) => {
-                  return (
-                    <HDLoginBoxes.ListInputsItems
-                      key={`header_display_login_mobile_${index + 1}`}
-                    >
-                      <RobotoLabels.Default>
-                        {input.labelName}
-                        {input.context === 'PASSWORD' && PasswordInput}
-                        {input.context === 'USERNAME' && UsernameInput}
-                      </RobotoLabels.Default>
-                    </HDLoginBoxes.ListInputsItems>
-                  );
-                })}
-              </HDLoginBoxes.ListInputs>
-              <HDLoginBoxes.ButtonModalBox>
-                <BtnRounded
-                  theme={smallBlueBtnRounded}
-                  isBold={true}
-                  onClick={goToAuthenticate}
-                >
-                  Login
-                </BtnRounded>
-                <BtnRounded
-                  theme={smallRedBtnRounded}
-                  isBold={true}
-                  onClick={cancelHandler}
-                >
-                  Cancel
-                </BtnRounded>
-              </HDLoginBoxes.ButtonModalBox>
-            </HDLoginBoxes.ModalContent>
-          </Modal>
-        )}
-        <BtnRounded
-          theme={smallBlueBtnRounded}
-          onClick={() => dispatch(modalState(onModal))}
-        >
-          Enter
-        </BtnRounded>
-      </HDLoginBoxes.Mobile>
-    </HDLoginBoxes.Container>
+      </HDLoginBoxes.Container>
+    </>
   );
 };
 

@@ -8,5 +8,10 @@ export const greaterBlueH2: DefaultTheme = {
 
 export const mediumBlueH2: DefaultTheme = {
   fontColor: ProjectColors.BLUE,
-  fontSize: '3rem',
+  fontSize: '2.3rem',
+};
+
+export const mediumWhite: DefaultTheme = {
+  fontColor: ProjectColors.WHITE,
+  fontSize: '2.3rem',
 };

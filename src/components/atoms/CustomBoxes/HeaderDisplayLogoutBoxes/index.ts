@@ -4,6 +4,7 @@ import { ProjectColors } from '../../../../global/configs/colors';
 const Container = styled.div`
   position: relative;
   bottom: 1.1rem;
+  margin-left: auto;
 
   @media screen and (min-width: 1024px) {
     position: unset;
@@ -16,12 +17,13 @@ const Desktop = styled.div`
   @media screen and (min-width: 1024px) {
     display: flex;
     align-items: center;
+    width: fit-content;
+    margin-left: auto;
   }
 `;
 
 const Mobile = styled.div`
   display: flex;
-  background-color: ${ProjectColors.WHITE};
   align-items: center;
   flex-direction: column;
   position: absolute;
