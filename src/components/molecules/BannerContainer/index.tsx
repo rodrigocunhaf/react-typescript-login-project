@@ -1,12 +1,11 @@
 import React from 'react';
-import { ProjectColors } from '../../../global/configs/colors';
-import { BGPainter } from '../../atoms/Frames/BGPainter';
-import { BContainerBoxes } from '../../atoms/Frames/Boxes';
+import BGPainter from '../../atoms/BGPainter';
+import { BContainerBoxes } from '../../atoms/CustomBoxes';
 
 const BannerContainer = ({ children }: { children: React.ReactNode }) => {
   return (
     <BContainerBoxes.Container>
-      <BGPainter color={ProjectColors.WHITE}>
+      <BGPainter>
         <BContainerBoxes.BoxContent>
           <BContainerBoxes.Content>{children}</BContainerBoxes.Content>
         </BContainerBoxes.BoxContent>

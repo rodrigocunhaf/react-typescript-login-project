@@ -1,5 +1,5 @@
 import React from 'react';
-import { FContainerBoxes } from '../../atoms/Frames/Boxes';
+import { FContainerBoxes } from '../../atoms/CustomBoxes';
 
 const FooterContainer = ({ children }: { children: React.ReactNode }) => {
   return (

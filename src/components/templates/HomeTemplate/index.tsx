@@ -8,13 +8,12 @@ import {
   FooterDefault,
   FooterDefaultProps,
 } from '../../organisms/FooterDefault';
-import { HeaderLogin, HeaderLoginContent } from '../../organisms/HeaderLogin';
+import { HeaderLogin, HeaderLoginProps } from '../../organisms/HeaderLogin';
 import store from './store';
-import UIContent from './UI/index.json';
 
 type HomeTemplateProps = {
   data: {
-    header: HeaderLoginContent;
+    header: HeaderLoginProps;
     banner: BannerHomeProps;
     footer: FooterDefaultProps;
   };
@@ -25,7 +24,7 @@ const HomeTemplate = ({ data }: HomeTemplateProps) => {
     <Provider store={store}>
       <HCS.SocialLink />
       <BGPageColor bgColor={ProjectColors.BLUE} />
-      <HeaderLogin content={data.header.content} UIcontent={UIContent.header} />
+      <HeaderLogin content={data.header.content} />
       <BannerHome content={data.banner.content} />
       <FooterDefault content={data.footer.content} />
     </Provider>

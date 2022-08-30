@@ -1,22 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const LogoImage = styled.img`
-  width: 100%;
-`;
-
-export type LogoRenderProps = {
+export type LogoImageProps = {
   fileName: string;
   description: string;
 };
 
-const LogoRender = ({ fileName, description }: LogoRenderProps) => {
-  return (
-    <LogoImage
-      src={`${process.env.PUBLIC_PATH}/images/icons/${fileName}`}
-      alt={description}
-    />
-  );
-};
+const LogoImage = styled.img<LogoImageProps>`
+  width: 100%;
+`;
 
-export { LogoRender };
+export const LogoRender = styled(LogoImage).attrs<LogoImageProps>((props) => ({
+  src: `${process.env.PUBLIC_PATH}/images/icons/${props.fileName}`,
+  alt: props.description,
+}))``;

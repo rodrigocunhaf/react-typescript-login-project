@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProjectColors } from '../../../global/configs/colors';
 import { LogoRender } from '../../atoms/FiguresRenders/LogoRender';
-import { FLogoBoxes } from '../../atoms/Frames/Boxes';
+import { FLogoBoxes } from '../../atoms/CustomBoxes';
 import RobotoP from '../../atoms/Typographys/Paragraphys/RobotoP';
 import { whiteSmall } from '../../atoms/Typographys/Paragraphys/RobotoP/themes';
 

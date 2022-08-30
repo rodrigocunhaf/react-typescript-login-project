@@ -1,6 +1,6 @@
 import React from 'react';
 import { LogoRender } from '../../atoms/FiguresRenders/LogoRender';
-import { HLogoBoxes } from '../../atoms/Frames/Boxes';
+import { HLogoBoxes } from '../../atoms/CustomBoxes';
 import RobotoH1 from '../../atoms/Typographys/Headings/RobotoH1';
 import { mediumBlue } from '../../atoms/Typographys/Headings/RobotoH1/themes';
 

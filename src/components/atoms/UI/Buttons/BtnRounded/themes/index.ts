@@ -7,3 +7,11 @@ export const smallBlueBtnRounded = {
   width: '6rem',
   height: '3rem',
 };
+
+export const smallRedBtnRounded = {
+  bgColor: 'red',
+  fontSize: '1rem',
+  fontColor: ProjectColors.WHITE,
+  width: '6rem',
+  height: '3rem',
+};

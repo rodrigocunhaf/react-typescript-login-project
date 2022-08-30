@@ -1,5 +1,5 @@
 import React from 'react';
-import { FSocialBoxes } from '../../atoms/Frames/Boxes';
+import { FSocialBoxes } from '../../atoms/CustomBoxes';
 import { FacebookSocial } from '../../atoms/SocialComponents/FacebookSocial';
 import { InstagramSocial } from '../../atoms/SocialComponents/InstagramSocial';
 import { TwitterSocial } from '../../atoms/SocialComponents/TwitterSocial';

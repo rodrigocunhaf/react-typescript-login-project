@@ -1,5 +1,5 @@
 import React from 'react';
-import { HDLoginBoxes } from '../../atoms/Frames/Boxes';
+import { HDLoginBoxes } from '../../atoms/CustomBoxes';
 import { Modal } from '../../atoms/ModalContainer';
 import { RobotoInputs } from '../../atoms/UI/Inputs';
 import { RobotoLabels } from '../../atoms/UI/Labels';
@@ -26,23 +26,29 @@ import {
 } from '../../templates/HomeTemplate/store';
 import RobotoH2 from '../../atoms/Typographys/Headings/RobotoH2';
 import BtnRounded from '../../atoms/UI/Buttons/BtnRounded';
-import { smallBlueBtnRounded } from '../../atoms/UI/Buttons/BtnRounded/themes';
+import {
+  smallBlueBtnRounded,
+  smallRedBtnRounded,
+} from '../../atoms/UI/Buttons/BtnRounded/themes';
 import { mediumBlueH2 } from '../../atoms/Typographys/Headings/RobotoH2/themes';
 
-type InputsProps = {
+type InputProps = {
   labelName: string;
   context: string;
 };
 
-export type HeaderDisplayLoginProps = {
-  inputsList: InputsProps[];
-  buttonText: string;
-};
+const inputs: InputProps[] = [
+  {
+    labelName: 'Username',
+    context: 'USERNAME',
+  },
+  {
+    labelName: 'Password',
+    context: 'PASSWORD',
+  },
+];
 
-const HeaderDisplayLogin = ({
-  buttonText,
-  inputsList,
-}: HeaderDisplayLoginProps) => {
+const HeaderDisplayLogin = () => {
   const selector = useHomeSelector((state) => state);
   const dispatch = useHomeDispatch();
 
@@ -79,11 +85,16 @@ const HeaderDisplayLogin = ({
     dispatch(setInput(resetAllInputsLogin()));
   };
 
+  const cancelHandler = () => {
+    dispatch(modalState(offModal));
+    dispatch(setInput(resetAllInputsLogin()));
+  };
+
   return (
     <HDLoginBoxes.Container>
       <HDLoginBoxes.Desktop>
         <HDLoginBoxes.ListInputs>
-          {inputsList.map((input, index) => {
+          {inputs.map((input, index) => {
             return (
               <HDLoginBoxes.ListInputsItems
                 key={`header_display_login__${index + 1}`}
@@ -102,7 +113,7 @@ const HeaderDisplayLogin = ({
           isBold={true}
           onClick={goToAuthenticate}
         >
-          {buttonText}
+          Login
         </BtnRounded>
       </HDLoginBoxes.Desktop>
       <HDLoginBoxes.Mobile>
@@ -111,7 +122,7 @@ const HeaderDisplayLogin = ({
             <HDLoginBoxes.ModalContent>
               <RobotoH2 theme={mediumBlueH2}>Login Project</RobotoH2>
               <HDLoginBoxes.ListInputs>
-                {inputsList.map((input, index) => {
+                {inputs.map((input, index) => {
                   return (
                     <HDLoginBoxes.ListInputsItems
                       key={`header_display_login_mobile_${index + 1}`}
@@ -131,7 +142,14 @@ const HeaderDisplayLogin = ({
                   isBold={true}
                   onClick={goToAuthenticate}
                 >
-                  {buttonText}
+                  Login
+                </BtnRounded>
+                <BtnRounded
+                  theme={smallRedBtnRounded}
+                  isBold={true}
+                  onClick={cancelHandler}
+                >
+                  Cancel
                 </BtnRounded>
               </HDLoginBoxes.ButtonModalBox>
             </HDLoginBoxes.ModalContent>

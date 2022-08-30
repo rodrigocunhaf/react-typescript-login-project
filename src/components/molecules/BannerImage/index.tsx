@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImageBannerRender } from '../../atoms/FiguresRenders/ImageBannerRender';
-import { BImageBoxes } from '../../atoms/Frames/Boxes';
+import { BImageBoxes } from '../../atoms/CustomBoxes';
 
 export type BannerImageProps = {
   bgFileName: string;

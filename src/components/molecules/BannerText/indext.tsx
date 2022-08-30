@@ -1,5 +1,5 @@
 import React from 'react';
-import { BTextBoxes } from '../../atoms/Frames/Boxes';
+import { BTextBoxes } from '../../atoms/CustomBoxes';
 import RobotoH2 from '../../atoms/Typographys/Headings/RobotoH2';
 import { greaterBlueH2 } from '../../atoms/Typographys/Headings/RobotoH2/themes';
 import RobotoP from '../../atoms/Typographys/Paragraphys/RobotoP';
