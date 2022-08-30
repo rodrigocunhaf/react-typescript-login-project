@@ -4,9 +4,9 @@ const Container = styled.div`
   display: flex;
   align-items: center;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (max-width: 768px) {
     h1 {
-      font-size: 2rem;
+      font-size: 1rem;
     }
   }
 `;

@@ -18,7 +18,7 @@ const ModalContainer = styled.div`
   justify-content: center;
 }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     display: none;
   }
 `;

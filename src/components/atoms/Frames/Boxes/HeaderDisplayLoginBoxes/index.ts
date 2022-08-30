@@ -4,7 +4,7 @@ const Container = styled.div``;
 
 const Desktop = styled.div`
   display: none;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     display: flex;
     gap: 0.5rem;
   }
@@ -17,7 +17,7 @@ const ListInputs = styled.ul`
   align-items: center;
   flex-direction: column;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     flex-direction: row;
   }
 `;
@@ -43,9 +43,34 @@ const ListInputsItems = styled.li`
 `;
 
 const Mobile = styled.div`
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     display: none;
   }
 `;
 
-export { Container, ListInputs, ListInputsItems, Desktop, Mobile };
+const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &.title {
+    margin: 0 auto;
+    width: fit-content;
+  }
+`;
+
+const ButtonModalBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export {
+  Container,
+  ListInputs,
+  ListInputsItems,
+  Desktop,
+  Mobile,
+  ModalContent,
+  ButtonModalBox,
+};

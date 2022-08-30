@@ -1,8 +1,8 @@
 import React from 'react';
-import { ProjectColors } from '../../../global/configs/colors';
 import { LogoRender } from '../../atoms/FiguresRenders/LogoRender';
 import { HLogoBoxes } from '../../atoms/Frames/Boxes';
-import { RobotoH1 } from '../../atoms/Typographys';
+import RobotoH1 from '../../atoms/Typographys/Headings/RobotoH1';
+import { mediumBlue } from '../../atoms/Typographys/Headings/RobotoH1/themes';
 
 export type LogoHeaderProps = {
   fileName: string;
@@ -14,9 +14,9 @@ const HeaderLogo = ({ fileName, description, heading }: LogoHeaderProps) => {
   return (
     <HLogoBoxes.Container>
       <HLogoBoxes.ImageBox>
-        <LogoRender description={description} fileName={fileName} />
+        <LogoRender fileName={fileName} description={description} />
       </HLogoBoxes.ImageBox>
-      <RobotoH1.Default color={ProjectColors.BLUE}>{heading}</RobotoH1.Default>
+      <RobotoH1 theme={mediumBlue}>{heading}</RobotoH1>
     </HLogoBoxes.Container>
   );
 };

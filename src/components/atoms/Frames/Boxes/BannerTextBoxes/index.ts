@@ -27,10 +27,6 @@ const Container = styled.div`
 
 const BoxTitle = styled.div`
   margin: 0 auto 3rem auto;
-
-  h2 {
-    font-size: 3rem;
-  }
 `;
 
 const BoxParagraphy = styled.div`

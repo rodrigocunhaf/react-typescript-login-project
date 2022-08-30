@@ -14,6 +14,10 @@ const HeaderContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    margin: 0 1rem;
+  }
 `;
 
 export { Header, HeaderContainer, HeaderContent };

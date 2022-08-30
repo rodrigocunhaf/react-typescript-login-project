@@ -1,8 +1,6 @@
 import React from 'react';
-import { ProjectColors } from '../../../global/configs/colors';
 import { HDLoginBoxes } from '../../atoms/Frames/Boxes';
 import { Modal } from '../../atoms/ModalContainer';
-import { BtnRounded } from '../../atoms/UI/Buttons';
 import { RobotoInputs } from '../../atoms/UI/Inputs';
 import { RobotoLabels } from '../../atoms/UI/Labels';
 import {
@@ -26,6 +24,10 @@ import {
   useHomeDispatch,
   useHomeSelector,
 } from '../../templates/HomeTemplate/store';
+import RobotoH2 from '../../atoms/Typographys/Headings/RobotoH2';
+import BtnRounded from '../../atoms/UI/Buttons/BtnRounded';
+import { smallBlueBtnRounded } from '../../atoms/UI/Buttons/BtnRounded/themes';
+import { mediumBlueH2 } from '../../atoms/Typographys/Headings/RobotoH2/themes';
 
 type InputsProps = {
   labelName: string;
@@ -95,49 +97,52 @@ const HeaderDisplayLogin = ({
             );
           })}
         </HDLoginBoxes.ListInputs>
-        <BtnRounded.Small
-          BGColor={ProjectColors.BLUE}
+        <BtnRounded
+          theme={smallBlueBtnRounded}
           isBold={true}
-          color={ProjectColors.WHITE}
           onClick={goToAuthenticate}
         >
           {buttonText}
-        </BtnRounded.Small>
+        </BtnRounded>
       </HDLoginBoxes.Desktop>
       <HDLoginBoxes.Mobile>
         {selector.UI.modalLogin && (
           <Modal>
-            <HDLoginBoxes.ListInputs>
-              {inputsList.map((input, index) => {
-                return (
-                  <HDLoginBoxes.ListInputsItems
-                    key={`header_display_login_mobile_${index + 1}`}
-                  >
-                    <RobotoLabels.Default>
-                      {input.labelName}
-                      {input.context === 'PASSWORD' && PasswordInput}
-                      {input.context === 'USERNAME' && UsernameInput}
-                    </RobotoLabels.Default>
-                  </HDLoginBoxes.ListInputsItems>
-                );
-              })}
-            </HDLoginBoxes.ListInputs>
-            <BtnRounded.Small
-              BGColor={ProjectColors.BLUE}
-              isBold={true}
-              color={ProjectColors.WHITE}
-            >
-              {buttonText}
-            </BtnRounded.Small>
+            <HDLoginBoxes.ModalContent>
+              <RobotoH2 theme={mediumBlueH2}>Login Project</RobotoH2>
+              <HDLoginBoxes.ListInputs>
+                {inputsList.map((input, index) => {
+                  return (
+                    <HDLoginBoxes.ListInputsItems
+                      key={`header_display_login_mobile_${index + 1}`}
+                    >
+                      <RobotoLabels.Default>
+                        {input.labelName}
+                        {input.context === 'PASSWORD' && PasswordInput}
+                        {input.context === 'USERNAME' && UsernameInput}
+                      </RobotoLabels.Default>
+                    </HDLoginBoxes.ListInputsItems>
+                  );
+                })}
+              </HDLoginBoxes.ListInputs>
+              <HDLoginBoxes.ButtonModalBox>
+                <BtnRounded
+                  theme={smallBlueBtnRounded}
+                  isBold={true}
+                  onClick={goToAuthenticate}
+                >
+                  {buttonText}
+                </BtnRounded>
+              </HDLoginBoxes.ButtonModalBox>
+            </HDLoginBoxes.ModalContent>
           </Modal>
         )}
-        <BtnRounded.Small
-          BGColor={ProjectColors.BLUE}
-          color={ProjectColors.WHITE}
+        <BtnRounded
+          theme={smallBlueBtnRounded}
           onClick={() => dispatch(modalState(onModal))}
         >
-          Login
-        </BtnRounded.Small>
+          Enter
+        </BtnRounded>
       </HDLoginBoxes.Mobile>
     </HDLoginBoxes.Container>
   );
