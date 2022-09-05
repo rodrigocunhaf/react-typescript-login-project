@@ -1,6 +1,6 @@
 export type ActionsFormLogin = {
   newValue: string;
-  actionType: string;
+  actionType: any;
 };
 
 export const changeUsername = (value: string): ActionsFormLogin => {
@@ -14,6 +14,13 @@ export const changePassword = (value: string): ActionsFormLogin => {
   return {
     actionType: 'ON_CHANGE_PASSWORD_LOGIN_INPUT',
     newValue: value,
+  };
+};
+
+export const onInvalidUser = (): ActionsFormLogin => {
+  return {
+    actionType: 'ON_INVALID_SUBMIT_USER',
+    newValue: '',
   };
 };
 

@@ -19,6 +19,7 @@ import { setInput } from '../../templates/HomeTemplate/store/reducers/UI/FormLog
 import {
   changePassword,
   changeUsername,
+  onInvalidUser,
   resetAllInputsLogin,
 } from '../../templates/HomeTemplate/store/actions/UI/FormLogin';
 import { onModalInvalid } from '../../templates/HomeTemplate/store/actions/UI/ModalInvalid';
@@ -30,6 +31,7 @@ import {
   offModal,
   onModal,
 } from '../../templates/HomeTemplate/store/actions/UI/ModalLogin';
+import fetchData from '../../../utils/fetchData';
 
 type InputProps = {
   labelName: string;
@@ -52,15 +54,27 @@ const ModalLogin = () => {
 
   const { UI, formLogin, auth } = useHomeSelector((state) => state);
 
-  const goToAuthenticate = () => {
+  const goToAuthenticate = (event: React.FormEvent) => {
+    event.preventDefault();
+
     if (
       validator.isEmail(formLogin.loginUsername) === true &&
       formLogin.loginPassword.length >= 8
     ) {
-      dispatch(authentication(logMe(formLogin.loginUsername)));
-      dispatch(modalState(offModal));
-      dispatch(setInput(resetAllInputsLogin()));
-      return;
+      return fetchData().then((data) => {
+        const findedUser = data.find(
+          (user) => user.id === formLogin.loginUsername
+        );
+        if (findedUser) {
+          dispatch(authentication(logMe(formLogin.loginUsername)));
+          dispatch(setInput(resetAllInputsLogin()));
+          dispatch(modalState(offModal));
+          return;
+        }
+        dispatch(setInput(resetAllInputsLogin()));
+        dispatch(setInput(onInvalidUser()));
+        dispatch(modalInvalidState(onModalInvalid));
+      });
     }
     dispatch(modalInvalidState(onModalInvalid));
   };

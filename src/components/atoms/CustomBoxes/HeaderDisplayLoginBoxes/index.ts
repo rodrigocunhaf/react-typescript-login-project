@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
+const Container = styled.form`
   display: none;
   @media screen and (min-width: 1024px) {
     display: flex;

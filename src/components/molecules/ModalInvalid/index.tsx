@@ -13,37 +13,51 @@ import {
   useHomeDispatch,
   useHomeSelector,
 } from '../../templates/HomeTemplate/store';
+import { resetAllInputsLogin } from '../../templates/HomeTemplate/store/actions/UI/FormLogin';
 import { offModalInvalid } from '../../templates/HomeTemplate/store/actions/UI/ModalInvalid';
+import { setInput } from '../../templates/HomeTemplate/store/reducers/UI/FormLogin';
 import { modalInvalidState } from '../../templates/HomeTemplate/store/reducers/UI/ModalInvalid';
 
 const ModalInvalid = () => {
   const { formLogin, modalInvalid } = useHomeSelector((state) => state);
   const dispatch = useHomeDispatch();
 
+  const onClickOkHandler = () => {
+    dispatch(modalInvalidState(offModalInvalid));
+    dispatch(setInput(resetAllInputsLogin()));
+  };
+
   const validationMessages = () => {
     const listErrors: JSX.Element[] = [];
 
-    if (validator.isEmail(formLogin.loginUsername) === false) {
+    if (
+      validator.isEmail(formLogin.loginUsername) === false &&
+      formLogin.invalidUser === false
+    ) {
       listErrors.push(
-        <MInvalidBoxes.ValidationListItem>
-          <RobotoP>
-            Please enter a valid <strong style={{ color: 'red' }}>email</strong>{' '}
-            value.
-          </RobotoP>
-        </MInvalidBoxes.ValidationListItem>
+        <RobotoP>
+          Please enter a valid <strong style={{ color: 'red' }}>email</strong>{' '}
+          value.
+        </RobotoP>
       );
     }
-    if (formLogin.loginPassword.length < 8) {
+    if (formLogin.loginPassword.length < 8 && formLogin.invalidUser === false) {
       listErrors.push(
-        <MInvalidBoxes.ValidationListItem>
-          <RobotoP>
-            Please enter a valid{' '}
-            <strong style={{ color: 'red' }}>password</strong> value.
-          </RobotoP>
-        </MInvalidBoxes.ValidationListItem>
+        <RobotoP>
+          Please enter a valid{' '}
+          <strong style={{ color: 'red' }}>password</strong> value.
+        </RobotoP>
       );
     }
 
+    if (formLogin.invalidUser === true) {
+      listErrors.push(
+        <RobotoP>
+          Authentication failed!{' '}
+          <strong style={{ color: 'red' }}>Invalid username/password</strong>
+        </RobotoP>
+      );
+    }
     return listErrors;
   };
   return (
@@ -58,14 +72,20 @@ const ModalInvalid = () => {
             </MInvalidBoxes.TitleBox>
             <MInvalidBoxes.Content>
               <MInvalidBoxes.ValidationList>
-                {validationMessages().map((item) => {
-                  return item;
+                {validationMessages().map((item, index) => {
+                  return (
+                    <MInvalidBoxes.ValidationListItem
+                      key={`validation_list_${index}`}
+                    >
+                      {item}
+                    </MInvalidBoxes.ValidationListItem>
+                  );
                 })}
               </MInvalidBoxes.ValidationList>
               <MInvalidBoxes.ButtonBox>
                 <BtnRounded
                   theme={smallBlueBtnRounded}
-                  onClick={() => dispatch(modalInvalidState(offModalInvalid))}
+                  onClick={onClickOkHandler}
                 >
                   OK
                 </BtnRounded>

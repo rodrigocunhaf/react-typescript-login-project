@@ -1,20 +1,17 @@
 import React from 'react';
 import { HDLoginBoxes } from '../../atoms/CustomBoxes';
-import { Modal } from '../../atoms/ModalContainer';
 import { RobotoInputs } from '../../atoms/UI/Inputs';
 import { RobotoLabels } from '../../atoms/UI/Labels';
 import {
   changePassword,
   changeUsername,
   resetAllInputsLogin,
+  onInvalidUser,
 } from '../../templates/HomeTemplate/store/actions/UI/FormLogin';
 import { authentication } from '../../templates/HomeTemplate/store/reducers/Auth';
 import { setInput } from '../../templates/HomeTemplate/store/reducers/UI/FormLogin';
 
-import {
-  logMe,
-  logMeOut,
-} from '../../templates/HomeTemplate/store/actions/Auth';
+import { logMe } from '../../templates/HomeTemplate/store/actions/Auth';
 import {
   useHomeDispatch,
   useHomeSelector,
@@ -23,10 +20,8 @@ import BtnRounded from '../../atoms/UI/Buttons/BtnRounded';
 import { smallBlueBtnRounded } from '../../atoms/UI/Buttons/BtnRounded/themes';
 import validator from 'validator';
 import { modalInvalidState } from '../../templates/HomeTemplate/store/reducers/UI/ModalInvalid';
-import {
-  offModalInvalid,
-  onModalInvalid,
-} from '../../templates/HomeTemplate/store/actions/UI/ModalInvalid';
+import { onModalInvalid } from '../../templates/HomeTemplate/store/actions/UI/ModalInvalid';
+import fetchData from '../../../utils/fetchData';
 
 type InputProps = {
   labelName: string;
@@ -47,7 +42,7 @@ const inputs: InputProps[] = [
 const HeaderDisplayLogin = () => {
   const dispatch = useHomeDispatch();
 
-  const { formLogin } = useHomeSelector((state) => state);
+  const { formLogin, modalInvalid } = useHomeSelector((state) => state);
 
   const onChangeUsernameHandler = (
     event: React.FormEvent<HTMLInputElement>
@@ -77,21 +72,33 @@ const HeaderDisplayLogin = () => {
     />
   );
 
-  const goToAuthenticate = () => {
+  const goToAuthenticate = (event: React.FormEvent) => {
+    event.preventDefault();
+
     if (
       validator.isEmail(formLogin.loginUsername) === true &&
       formLogin.loginPassword.length >= 8
     ) {
-      dispatch(authentication(logMe(formLogin.loginUsername)));
-      dispatch(setInput(resetAllInputsLogin()));
-      return;
+      return fetchData().then((data) => {
+        const findedUser = data.find(
+          (user) => user.id === formLogin.loginUsername
+        );
+        if (findedUser) {
+          dispatch(authentication(logMe(formLogin.loginUsername)));
+          dispatch(setInput(resetAllInputsLogin()));
+          return;
+        }
+        dispatch(setInput(resetAllInputsLogin()));
+        dispatch(setInput(onInvalidUser()));
+        dispatch(modalInvalidState(onModalInvalid));
+      });
     }
     dispatch(modalInvalidState(onModalInvalid));
   };
 
   return (
     <>
-      <HDLoginBoxes.Container>
+      <HDLoginBoxes.Container onSubmit={goToAuthenticate}>
         <HDLoginBoxes.ListInputs>
           {inputs.map((input, index) => {
             return (
@@ -107,11 +114,7 @@ const HeaderDisplayLogin = () => {
             );
           })}
         </HDLoginBoxes.ListInputs>
-        <BtnRounded
-          theme={smallBlueBtnRounded}
-          isBold={true}
-          onClick={goToAuthenticate}
-        >
+        <BtnRounded theme={smallBlueBtnRounded} isBold={true} type="submit">
           Login
         </BtnRounded>
       </HDLoginBoxes.Container>
