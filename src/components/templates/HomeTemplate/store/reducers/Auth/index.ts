@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TypedUseSelectorHook, useSelector } from 'react-redux';
-import { RootStatePage } from '../..';
+import { getCookie, setCookie } from '../../../../../../utils/cookie';
 import { ActionsAuth } from '../../actions/Auth';
 
 type AuthState = {
@@ -9,8 +8,8 @@ type AuthState = {
 };
 
 const initialState: AuthState = {
-  logged: localStorage.getItem('username') ? true : false,
-  username: localStorage.getItem('username') || '',
+  logged: getCookie('username') ? true : false,
+  username: getCookie('username') || '',
 };
 
 const AuthSlice = createSlice({
@@ -23,10 +22,11 @@ const AuthSlice = createSlice({
     ): AuthState => {
       switch (action.payload.type) {
         case 'LOGIN':
-          localStorage.setItem(
+          sessionStorage.setItem(
             action.payload.data.localStorageName,
             action.payload.data.username
           );
+          setCookie(action.payload.data.username);
           return {
             logged: action.payload.data.logged,
             username: action.payload.data.username,
