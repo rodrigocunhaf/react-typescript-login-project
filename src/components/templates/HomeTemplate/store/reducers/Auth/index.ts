@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getCookie, setCookie } from '../../../../../../utils/cookie';
+import {
+  getCookie,
+  removeCookie,
+  setCookie,
+} from '../../../../../../utils/cookie';
 import { ActionsAuth } from '../../actions/Auth';
 
 type AuthState = {
@@ -26,13 +30,16 @@ const AuthSlice = createSlice({
             action.payload.data.localStorageName,
             action.payload.data.username
           );
-          setCookie(action.payload.data.username);
+          setCookie(
+            action.payload.data.localStorageName,
+            action.payload.data.username
+          );
           return {
             logged: action.payload.data.logged,
             username: action.payload.data.username,
           };
         case 'LOGOUT':
-          localStorage.removeItem(action.payload.data.localStorageName);
+          removeCookie('username');
           return {
             logged: action.payload.data.logged,
             username: action.payload.data.username,

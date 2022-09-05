@@ -1,10 +1,14 @@
-export const setCookie = (username: string) => {
+export const setCookie = (cookieName: string, value: string) => {
   const currentDate = new Date();
   const month = currentDate.getMonth();
   const year = currentDate.getFullYear();
   const nextDate = currentDate.getDate() + 7;
   const CookieExpire = new Date(year, month, nextDate);
-  document.cookie = `username=${username}; expires=${CookieExpire}`;
+  document.cookie = `${cookieName}=${value}; expires=${CookieExpire}`;
+};
+
+export const removeCookie = (cookieName: string) => {
+  document.cookie = `${cookieName}=""; expires=Thu, 01 Jan 1970 00:00:00 UTC`;
 };
 
 export const getCookie = (cookieName: string) => {
